@@ -1,6 +1,5 @@
 # Importamos la librería datetime para manejar fechas
 from datetime import datetime
-
 # Definimos la estructura de datos para almacenar las tareas
 tareas = []
 
@@ -34,6 +33,15 @@ def eliminar_tarea():
     id_tarea = int(input("Ingrese el ID de la tarea a eliminar: "))
     del tareas[id_tarea]
 
+# Funcion para editar una tarea
+def editar_tarea():
+    id_tarea = int(input("Ingrese el ID de la tarea de desea editar: "))
+    nueva_descripcion= input("Ingrese la nueva descripcion:")
+    nueva_fecha=input("Ingrese la nueva fecha limite:")
+    tareas[id_tarea]["descripcion"] = nueva_descripcion
+    tareas[id_tarea]["fecha_limite"] = datetime.strptime(nueva_fecha, "%Y-%m-%d")
+    tareas[id_tarea]["estado"]="pendiente"
+
 # Menú principal
 while True:
     print("**Sistema de gestión de tareas**")
@@ -41,7 +49,8 @@ while True:
     print("2. Listar tareas")
     print("3. Completar tarea")
     print("4. Eliminar tarea")
-    print("5. Salir")
+    print("5. Editar tarea")
+    print("6. Salir")
 
     opcion = int(input("Seleccione una opción: "))
 
@@ -54,6 +63,8 @@ while True:
     elif opcion == 4:
         eliminar_tarea()
     elif opcion == 5:
+        editar_tarea()
+    elif opcion == 6:
         break
     else:
         print("Opción no válida.")
